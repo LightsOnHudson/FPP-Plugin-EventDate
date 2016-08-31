@@ -58,7 +58,20 @@ if(isset($_POST['updatePlugin']))
 {
 	$updateResult = updatePluginFromGitHub($gitURL, $branch="master", $pluginName);
 
-	echo $updateResult."<br/> \n";
+	logEntry("update result: ". $updateResult);//."<br/> \n";
+	
+	if(file_exists($settings['pluginDirectory']."/".$pluginName."/fpp_install.sh"))
+	{
+		$updateInstallCMD = $settings['pluginDirectory']."/".$pluginName."/fpp_install.sh";
+		logEntry("running upgrade install script: ".$updateInstallCMD);
+		exec($updateInstallCMD,$sysOutput);
+		//echo $sysOutput;
+	
+	} else {
+		logEntry("No fpp_install.sh upgrade script available");
+	}
+	
+	
 }
 $DEBUG = $pluginSettings['DEBUG'];
 
