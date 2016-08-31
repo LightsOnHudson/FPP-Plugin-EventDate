@@ -107,17 +107,29 @@ logEntry( "Difference between ".date('Y-m-d H:i:s',$date1)." and ".date('Y-m-d H
 //echo $m." minutes\n";
 
 $messageText = $PRE_TEXT;
-if ((int) $y > 0){
+if ((int) $y >= 2){
 	$messageText .= $y. " years ";
 }
-if ((int) $d > 0){
+if ((int) $d >= 2){
 	$messageText .= $d. " days ";
 }
-if ((int) $h > 0){
+if ((int) $h >= 2){
 	$messageText .= $h. " hours ";
 }
-if ((int) $m > 0){
+if ((int) $m >= 2){
 	$messageText .= $m. " minutes ";
+}
+if ((int) $y == 1){
+	$messageText .= $y. " year ";
+}
+if ((int) $d ==1 ){
+	$messageText .= $d. " day ";
+}
+if ((int) $h == 1){
+	$messageText .= $h. " hour ";
+}
+if ((int) $m == 1){
+	$messageText .= $m. " minute ";
 }
 
 $messageText .= " ".$POST_TEXT. " ".$EVENT_NAME;
