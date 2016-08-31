@@ -1,5 +1,113 @@
 <?php
 
+//curl do nothing function
+function do_nothing($curl, $input) {
+	return 0; // aborts transfer with an error
+}
+//pring Min selection
+function printMinSelection($min, $minName) {
+	global $DEBUG;
+
+	echo "<select name=\"".$minName."\"> \n";
+
+	for($i=0;$i<=59;$i++) {
+
+		if($i == $min) {
+			echo "<option selected value=\"".$i."\">".str_pad($i,2,'0',STR_PAD_LEFT)."</option> \n";
+		} else {
+			echo "<option  value=\"".$i."\">".str_pad($i,2,'0',STR_PAD_LEFT)."</option> \n";
+		}
+	}
+	echo "</select> \n";
+}
+
+//pring hour selection
+function printHourSelection($hour, $hourName) {
+	global $DEBUG;
+	
+	echo "<select name=\"".$hourName."\"> \n";
+
+	for($i=0;$i<=23;$i++) {
+		
+		if($i == $hour) {
+			echo "<option selected value=\"".$i."\">".str_pad($i,2,'0',STR_PAD_LEFT)."</option> \n";
+		} else {
+			echo "<option  value=\"".$i."\">".str_pad($i,2,'0',STR_PAD_LEFT)."</option> \n";
+		}
+	}
+	echo "</select> \n";
+}
+//print month selection
+function printMonthSelection($month, $monthName) {
+	global $DEBUG;
+	
+	$month_array = array("1" => "January",
+			"2" => "February",
+			"3" => "March",
+			"4" => "April",
+			"5" => "May",
+			"6" => "June",
+			"7" => "July",
+			"8" => "August",
+			"9" => "September",
+			"10" => "October",
+			"11" => "November",
+			"12" => "December");
+	
+	echo "<select name=\"".$monthName."\"> \n";
+	
+	foreach($month_array as $m => $name) {
+		if($m == $month) {
+			echo "<option selected value=\"".$m."\">".$name."</option> \n";
+		} else {
+			echo "<option  value=\"".$m."\">".$name."</option> \n";
+		}
+	}
+	echo "</select> \n";
+			
+			
+}
+
+//print month selection
+function printDaySelection($day, $dayName) {
+	global $DEBUG;
+
+	
+
+	echo "<select name=\"".$dayName."\"> \n";
+
+	for($i=1;$i<=31;$i++) {
+		
+		if($i == $day) {
+			echo "<option selected value=\"".$i."\">".$i."</option> \n";
+		} else {
+			echo "<option  value=\"".$i."\">".$i."</option> \n";
+		}
+	}
+	echo "</select> \n";
+		
+		
+}
+
+//print month selection
+function printYearSelection($year, $yearName) {
+	global $DEBUG;
+
+	$year_array = array("2016","2017");
+
+	echo "<select name=\"".$yearName."\"> \n";
+
+	foreach($year_array as $y) {
+		if($y == $year) {
+			echo "<option selected value=\"".$y."\">".$y."</option> \n";
+		} else {
+			echo "<option  value=\"".$y."\">".$y."</option> \n";
+		}
+	}
+	echo "</select> \n";
+		
+		
+}
 //send response function
 function sendResponse($from,$REPLY_TEXT,$GMAIL_ADDRESS,$subject) {
 	global $DEBUG, $gv, $EMAIL, $RESPONSE_METHOD;
