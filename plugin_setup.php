@@ -7,7 +7,7 @@ include_once 'commonFunctions.inc.php';
 
 
 $pluginName = "EventDate";
-
+$pluginVersion ="2.0";
 $PLAYLIST_NAME="";
 $MAJOR = "98";
 $MINOR = "01";
@@ -143,7 +143,7 @@ if($EVENT_NAME == "") {
 
 <div id="EventDate" class="settings">
 <fieldset>
-<legend>Event Date Support Instructions</legend>
+<legend><?php echo $pluginName." Version: ".$pluginVersion;?> Support Instructions</legend>
 
 <p>Known Issues:
 <ul>
@@ -160,7 +160,7 @@ if($EVENT_NAME == "") {
 </ul>
 
 <p/>
-<b>This plugin reuquires ACCURATE time for its calculation. Please ensure RTC is working properly</b>
+<b>This plugin requires ACCURATE time for its calculation. Please ensure RTC is working properly</b>
 
 <p/>
 
@@ -217,13 +217,13 @@ $messageText = $PRE_TEXT;
 if ((int) $y >= 2){
 	$messageText .= $y. " years ";
 }
-if ((int) $d >= 2){
+if ((int) $d >= 2 ){
 	$messageText .= $d. " days ";
 }
-if ((int) $h >= 2){
+if ((int) $h >= 2 && $INCLUDE_HOURS == "ON"){
 	$messageText .= $h. " hours ";
 }
-if ((int) $m >= 2){
+if ((int) $m >= 2 && $INCLUDE_MINUTES == "ON"){
 	$messageText .= $m. " minutes ";
 }
 if ((int) $y == 1){
@@ -232,10 +232,10 @@ if ((int) $y == 1){
 if ((int) $d ==1 ){
 	$messageText .= $d. " day ";
 }
-if ((int) $h == 1){
+if ((int) $h == 1 && $INCLUDE_HOURS == "ON"){
 	$messageText .= $h. " hour ";
 }
-if ((int) $m == 1){
+if ((int) $m == 1 && $INCLUDE_MINUTES == "ON"){
 	$messageText .= $m. " minute ";
 }
 
@@ -263,6 +263,18 @@ echo "<p/> \n";
 echo "Event Name: (Christmas, Halloween, Labor day): \n";
 echo "<input type=\"text\" value=\"".$EVENT_NAME."\" name=\"EVENT_NAME\"> \n";
 
+
+echo "<p/>";
+
+echo "If Remaining time >= 1 day, include: \n";
+echo "<br/> \n";
+echo "Include Hours: \n";
+PrintSettingCheckbox("Include Days ", "INCLUDE_HOURS", $restart = 0, $reboot = 0, "ON", "OFF", $pluginName = $pluginName, $callbackName = "");
+
+echo "<br/> \n";
+echo "Include Minutes: \n";
+PrintSettingCheckbox("Include Hours", "INCLUDE_MINUTES", $restart = 0, $reboot = 0, "ON", "OFF", $pluginName = $pluginName, $callbackName = "");
+
 echo "<p/> \n";
 echo "Will appear as: \n";
 echo "<hr/> \n";
@@ -271,7 +283,8 @@ echo "<marquee behavior=\"scroll\" scrollamount=\"5\" direction=\"left\" onmouse
 echo preg_replace('!\s+!', ' ', $messageText);
 echo "</marquee> \n";
 echo "<hr/> \n";
-echo "<p/>";
+
+echo "<p/> \n";
 echo "Immediately output to Matrix (Run MATRIX plugin): ";
 
 //if($IMMEDIATE_OUTPUT == "on" || $IMMEDIATE_OUTPUT == 1) {

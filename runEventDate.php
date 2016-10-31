@@ -110,13 +110,13 @@ $messageText = $PRE_TEXT;
 if ((int) $y >= 2){
 	$messageText .= $y. " years ";
 }
-if ((int) $d >= 2){
+if ((int) $d >= 2 ){
 	$messageText .= $d. " days ";
 }
-if ((int) $h >= 2){
+if ((int) $h >= 2 && $INCLUDE_HOURS == "ON"){
 	$messageText .= $h. " hours ";
 }
-if ((int) $m >= 2){
+if ((int) $m >= 2 && $INCLUDE_MINUTES == "ON"){
 	$messageText .= $m. " minutes ";
 }
 if ((int) $y == 1){
@@ -125,10 +125,10 @@ if ((int) $y == 1){
 if ((int) $d ==1 ){
 	$messageText .= $d. " day ";
 }
-if ((int) $h == 1){
+if ((int) $h == 1 && $INCLUDE_HOURS == "ON"){
 	$messageText .= $h. " hour ";
 }
-if ((int) $m == 1){
+if ((int) $m == 1 && $INCLUDE_MINUTES == "ON"){
 	$messageText .= $m. " minute ";
 }
 
@@ -152,7 +152,7 @@ if($IMMEDIATE_OUTPUT != "ON") {
 
 //	if($MATRIX_LOCATION != "127.0.0.1") {
 		//$remoteCMD = "/usr/bin/curl -s --basic 'http://".$MATRIX_LOCATION."/plugin.php?plugin=".$MATRIX_MESSAGE_PLUGIN_NAME."&page=".$MATRIX_EXEC_PAGE_NAME."&nopage=1'";// > /dev/null";
-		$curlURL = "http://".$MATRIX_LOCATION."/plugin.php?plugin=".$MATRIX_MESSAGE_PLUGIN_NAME."&page=".$MATRIX_EXEC_PAGE_NAME."&subscribedPlugin=".$pluginName."&nopage=1";
+		$curlURL = "http://".$MATRIX_LOCATION."/plugin.php?plugin=".$MATRIX_MESSAGE_PLUGIN_NAME."&page=".$MATRIX_EXEC_PAGE_NAME."&nopage=1&subscribedPlugin=".$pluginName."&onDemandMessage=".urlencode($messageText);
 		//logEntry("REMOTE MATRIX TRIGGER: ".$curlURL);
 			
 		$ch = curl_init();
