@@ -134,7 +134,14 @@ if($EVENT_NAME == "") {
 		$LAST_READ=0;
 	}
 
+	$Plugin_DBName = $settings['configDirectory']."/FPP.".$pluginName.".db";
 	
+	//echo "PLUGIN DB:NAME: ".$Plugin_DBName;
+	
+	$db = new SQLite3($Plugin_DBName) or die('Unable to open database');
+	
+	//create the default tables if they do not exist!
+	createTables();
 ?>
 
 <html>
