@@ -7,7 +7,8 @@ include_once 'commonFunctions.inc.php';
 
 
 $pluginName = "EventDate";
-$pluginVersion ="2.0";
+include_once 'version.inc';
+
 $PLAYLIST_NAME="";
 $MAJOR = "98";
 $MINOR = "01";
