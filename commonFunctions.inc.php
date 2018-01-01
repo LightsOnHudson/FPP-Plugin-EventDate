@@ -93,7 +93,7 @@ function printDaySelection($day, $dayName) {
 function printYearSelection($year, $yearName) {
 	global $DEBUG;
 
-	$year_array = array("2016","2017");
+	$year_array = array("2016","2017","2018","2019","2020");
 
 	echo "<select name=\"".$yearName."\"> \n";
 
