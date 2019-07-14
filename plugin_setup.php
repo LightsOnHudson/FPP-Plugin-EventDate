@@ -6,7 +6,8 @@ include_once 'functions.inc.php';
 include_once 'commonFunctions.inc.php';
 
 
-$pluginName = "EventDate";
+//$pluginName = "EventDate";
+$pluginName = basename(dirname(__FILE__));  //pjd 7-14-2019   added per dkulp
 include_once 'version.inc';
 
 $PLAYLIST_NAME="";
@@ -22,7 +23,13 @@ $eventExtension = ".fevt";
 $SMSEventFile = $eventDirectory."/".$MAJOR."_".$MINOR.$eventExtension;
 $SMSGETScriptFilename = $scriptDirectory."/".$pluginName."_GET.sh";
 
+//$messageQueue_Plugin = "MessageQueue";
+// Fix for backward compatibility added this for 2.7 path 7/17/2019
 $messageQueue_Plugin = "MessageQueue";
+if (strpos($pluginName, "FPP-Plugin") !== false) {
+   $messageQueue_Plugin = "FPP-Plugin-MessageQueue";
+}
+
 $MESSAGE_QUEUE_PLUGIN_ENABLED=false;
 
 
@@ -155,7 +162,7 @@ if($EVENT_NAME == "") {
 
 <p>Known Issues:
 <ul>
-<li>None
+<li>None 
 </ul>
 
 <p>Configuration:
@@ -319,7 +326,7 @@ MATRIX Message Plugin Location: (IP Address. default 127.0.0.1);
 </form>
 
 
-<p>To report a bug, please file it against the sms Control plugin project on Git:<? echo $gitURL;?> 
+<p>To report a bug, please file it against the plugin project on Git:<? echo $gitURL;?> 
 </fieldset>
 </div>
 <br />
