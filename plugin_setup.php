@@ -6,7 +6,8 @@ include_once 'functions.inc.php';
 include_once 'commonFunctions.inc.php';
 
 
-$pluginName = "EventDate";
+//$pluginName = "EventDate";
+$pluginName = basename(dirname(__FILE__));  //pjd 7-14-2019   added per dkulp
 include_once 'version.inc';
 
 $PLAYLIST_NAME="";
@@ -22,7 +23,8 @@ $eventExtension = ".fevt";
 $SMSEventFile = $eventDirectory."/".$MAJOR."_".$MINOR.$eventExtension;
 $SMSGETScriptFilename = $scriptDirectory."/".$pluginName."_GET.sh";
 
-$messageQueue_Plugin = "MessageQueue";
+//$messageQueue_Plugin = "MessageQueue";
+$messageQueue_Plugin = "FPP-Plugin-MessageQueue";  //added this for 2.7 naming 7/17/2019
 $MESSAGE_QUEUE_PLUGIN_ENABLED=false;
 
 
